@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
 :root {
-  --bg-color: #000;
   --shadow-dist: 5px;
 }
 
@@ -54,6 +53,7 @@ body {
           transform: scale(1);
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s;
+  background: transparent;
 }
 
 .container div h1#t1Name:hover, .container div h1#t2Name:hover {
@@ -78,13 +78,9 @@ body {
 }
 
 .container div h1.score:hover {
-  border: #0f0 2px solid;
-}
-
-.container div h1.score span.score:hover {
   font-weight: bold;
   color: #3cff00;
-  text-shadow: var(--shadow-dist) var(--shadow-dist) #00f;
+  text-shadow: var(--shadow-dist) var(--shadow-dist) var(--shadow-color);
 }
 
 .container div img {
