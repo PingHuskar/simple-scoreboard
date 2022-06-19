@@ -1,11 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
+:root {
+  --bg-color: #000;
+  --shadow-dist: 5px;
+}
+
 * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
-  background: #000;
+  background: var(--bg-color);
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -13,7 +18,7 @@
 }
 
 body {
-  background: #000;
+  background: var(--bg-color);
 }
 
 .container {
@@ -43,6 +48,21 @@ body {
   color: #fff;
 }
 
+.container div h1#t1Name, .container div h1#t2Name {
+  text-transform: capitalize;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+.container div h1#t1Name:hover, .container div h1#t2Name:hover {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+}
+
 .container div h1.score {
   font-family: 'Orbitron', sans-serif;
   display: -webkit-box;
@@ -57,9 +77,14 @@ body {
   font-size: 10em;
 }
 
+.container div h1.score:hover {
+  border: #0f0 2px solid;
+}
+
 .container div h1.score span.score:hover {
   font-weight: bold;
   color: #3cff00;
+  text-shadow: var(--shadow-dist) var(--shadow-dist) #00f;
 }
 
 .container div img {
@@ -76,5 +101,22 @@ body {
   width: auto;
   margin-left: auto;
   margin-right: auto;
+  -webkit-filter: grayscale(1);
+          filter: grayscale(1);
+  background: transparent;
+}
+
+.container div img:hover {
+  -webkit-filter: grayscale(0.5);
+          filter: grayscale(0.5);
+  -webkit-transform: scale(2);
+          transform: scale(2);
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+.container div img:active {
+  -webkit-filter: grayscale(0);
+          filter: grayscale(0);
 }
 /*# sourceMappingURL=style.css.map */
