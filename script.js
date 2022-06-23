@@ -8,15 +8,23 @@ document.title = title
 document.getElementById('logo1').src = searchParam.get('logo1') !== null ? searchParam.get('logo1') : 'https://seeklogo.net/wp-content/uploads/2012/12/manchester-united-logo-vector-400x400.png'
 document.getElementById('logo2').src = searchParam.get('logo2') !== null ? searchParam.get('logo2') : 'https://seeklogo.net/wp-content/uploads/2011/08/liverpool-logo-vector.png'
 var bg = searchParam.get('bg') !== null ? searchParam.get('bg') : 'black'
-if (/[\da-f]{7,}/i.test(bg)) {
-    bg = bg.slice(0,6)
+var fontColor = searchParam.get('c') !== null ? searchParam.get('c') : 'white'
+var sc = searchParam.get('sc') !== null ? searchParam.get('sc') : 'white'
+function setColor(color,prop) {
+    if (/[\da-f]{7,}/i.test(color)) {
+        color = color.slice(0,6)
+    }
+    if (/[\da-f]{6}|[\da-f]{3}/i.test(color)) {
+        document.documentElement.style.setProperty(`--${prop}-color`, `#${color}`);
+    }
+    else {
+        document.documentElement.style.setProperty(`--${prop}-color`, `${color}`);
+    }
 }
-if (/[\da-f]{6}|[\da-f]{3}/i.test(bg)) {
-    document.documentElement.style.setProperty('--bg-color', `#${bg}`);
-}
-else {
-    document.documentElement.style.setProperty('--bg-color', `${bg}`);
-}
+setColor(bg,'bg')
+setColor(fontColor,'font')
+setColor(sc,'sc')
+
 const shadow = searchParam.get('shadow') !== null ? searchParam.get('shadow') : 'blue'
 document.documentElement.style.setProperty('--shadow-color', shadow);
 var t1score = t1 !== null ? t1.replace('?','') : 0

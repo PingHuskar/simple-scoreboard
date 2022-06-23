@@ -34,6 +34,10 @@ body {
   min-height: 100vh;
 }
 
+.container div #t1Name, .container div #t2Name {
+  color: var(--font-color);
+}
+
 .container div h1, .container div h4 {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -44,7 +48,7 @@ body {
   top: 0;
   text-align: center;
   font-size: 3em;
-  color: #fff;
+  color: var(--sc-color);
 }
 
 .container div h1#t1Name, .container div h1#t2Name {
@@ -97,8 +101,6 @@ body {
   width: auto;
   margin-left: auto;
   margin-right: auto;
-  -webkit-filter: grayscale(1);
-          filter: grayscale(1);
   background: transparent;
 }
 

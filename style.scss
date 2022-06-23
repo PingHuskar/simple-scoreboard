@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 :root {
-    // --bg-color: #000;
     --shadow-dist: 5px;
 }
 * {
@@ -23,13 +22,17 @@ body {
     // background: #222;
     div {
         // background: #444;
+        #t1Name, #t2Name {
+            color: var(--font-color);
+        }
         h1,h4 {
             display: flex;
             justify-content: center;
             top: 0;
             text-align: center;
             font-size: 3em;
-            color: #fff;
+            color: var(--sc-color);
+            // filter: hue-rotate(180deg);
         }
         h1#t1Name,h1#t2Name {
             text-transform: capitalize;
@@ -72,7 +75,7 @@ body {
             width: auto;
             margin-left: auto;
             margin-right: auto;
-            filter: grayscale(1);
+            // filter: grayscale(1);
             background: transparent;
             &:hover {
                 filter: grayscale(0.5);
