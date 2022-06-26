@@ -52,4 +52,33 @@ document.getElementById('logo2').addEventListener('click', () => {
         open(currentURL, "_self")
     }
 })
-
+document.getElementById('t1Name').addEventListener('blur', () => {
+    currentURL = currentURL.replace(/[&\?]?name1=[^&\?]+&/g,'')
+    currentURL += `&name1=${document.getElementById('t1Name').textContent}&`
+    open(currentURL, "_self")
+})
+document.getElementById('t2Name').addEventListener('blur', () => {
+    // alert(document.getElementById('t2Name').textContent);
+    currentURL = currentURL.replace(/[&\?]?name2=[^&\?]+&/g,'')
+    // alert(currentURL)
+    currentURL += `&name2=${document.getElementById('t2Name').textContent}&`
+    open(currentURL, "_self")
+})
+document.getElementById('Team1Score').addEventListener('blur', () => {
+    if (t1 !== null) {
+        open(currentURL.replace(`score1=${t1score}`,`score1=${document.getElementById('Team1Score').textContent}`), "_self")
+    }
+    else {
+        currentURL += `&score1=${document.getElementById('Team1Score').textContent}`
+        open(currentURL, "_self")
+    }
+})
+document.getElementById('Team2Score').addEventListener('blur', () => {
+    if (t2 !== null) {
+        open(currentURL.replace(`score2=${t2score}`,`score2=${document.getElementById('Team2Score').textContent}`), "_self")
+    }
+    else {
+        currentURL += `&score2=${document.getElementById('Team2Score').textContent}`
+        open(currentURL, "_self")
+    }
+})
