@@ -33,52 +33,65 @@ document.getElementById('Team1Score').textContent = t1score;
 document.getElementById('Team2Score').textContent = t2score;
 document.getElementById('t1Name').textContent = t1Name || 'Team 1'
 document.getElementById('t2Name').textContent = t2Name || 'Team 2'
-var currentURL = `${location}`
+var currentURL = `${location.origin}?${location.search.replace(/[\?]&/g,'&').substring(1)}`
+console.warn(currentURL)
 document.getElementById('logo1').addEventListener('click', () => {
-    if (t1 !== null) {
+    if (location.search === '') {
+        open(`${location.origin}?score1=1`, "_self")
+    }
+    else if (location.search.match("score1")) {
         open(currentURL.replace(`score1=${t1score}`,`score1=${parseInt(t1score)+1}`), "_self")
     }
     else {
-        currentURL += `?&score1=1`
-        open(currentURL, "_self")
+        currentURL = currentURL.replace(/[&\?]?score1=[^&\?]+/g,'')
+        open(`${currentURL}&score1=${(document.getElementById('Team1Score').textContent.replace(/(=\d+)(\?)/,/$1&/) === 0)? 1 : parseInt(document.getElementById('Team1Score').textContent)+1}`, "_self")
     }
 })
 document.getElementById('logo2').addEventListener('click', () => {
-    if (t2 !== null) {
+    if (location.search === '') {
+        open(`${location.origin}?score2=1`, "_self")
+    }
+    else if (location.search.match("score2")) {
         open(currentURL.replace(`score2=${t2score}`,`score2=${parseInt(t2score)+1}`), "_self")
     }
     else {
-        currentURL += `?&score2=1`
-        open(currentURL, "_self")
+        currentURL = currentURL.replace(/[&\?]?score2=[^&\?]+/g,'')
+        open(`${currentURL}&score2=${(document.getElementById('Team2Score').textContent.replace(/(=\d+)(\?)/,/$1&/) === 0)? 1 : parseInt(document.getElementById('Team2Score').textContent)+1}`, "_self")
     }
 })
 document.getElementById('t1Name').addEventListener('blur', () => {
-    currentURL = currentURL.replace(/[&\?]?name1=[^&\?]+&/g,'')
-    currentURL += `&name1=${document.getElementById('t1Name').textContent}&`
-    open(currentURL, "_self")
+    if (location.search === '') {
+        open(`${location.origin}?name1=${document.getElementById('t1Name').textContent}`, "_self")
+    }
+    else {
+        currentURL = currentURL.replace(/[&\?]?name1=[^&\?]+/g,'')
+        open(`${currentURL}&name1=${document.getElementById('t1Name').textContent.replace(/(=\d+)(\?)/,/$1&/)}`, "_self")
+    }
 })
 document.getElementById('t2Name').addEventListener('blur', () => {
-    // alert(document.getElementById('t2Name').textContent);
-    currentURL = currentURL.replace(/[&\?]?name2=[^&\?]+&/g,'')
-    // alert(currentURL)
-    currentURL += `&name2=${document.getElementById('t2Name').textContent}&`
-    open(currentURL, "_self")
+    if (location.search === '') {
+        open(`${location.origin}?name2=${document.getElementById('t2Name').textContent}`, "_self")
+    }
+    else {
+        currentURL = currentURL.replace(/[&\?]?name2=[^&\?]+/g,'')
+        open(`${currentURL}&name2=${document.getElementById('t2Name').textContent.replace(/(=\d+)(\?)/,/$1&/)}`, "_self")
+    }
 })
 document.getElementById('Team1Score').addEventListener('blur', () => {
     if (t1 !== null) {
-        open(currentURL.replace(`score1=${t1score}`,`score1=${document.getElementById('Team1Score').textContent}`), "_self")
+        open(currentURL.replace(`score1=${t1score}`,`score1=${document.getElementById('Team1Score').textContent.replace(/\D/g,'')}`), "_self")
     }
     else {
-        currentURL += `&score1=${document.getElementById('Team1Score').textContent}`
-        open(currentURL, "_self")
+        currentURL += `&score1=${document.getElementById('Team1Score').textContent.replace(/\D/g,'')}`
+        open(currentURL.replace(/\?(&)/,''), "_self")
     }
 })
 document.getElementById('Team2Score').addEventListener('blur', () => {
     if (t2 !== null) {
-        open(currentURL.replace(`score2=${t2score}`,`score2=${document.getElementById('Team2Score').textContent}`), "_self")
+        open(currentURL.replace(`score2=${t2score}`,`score2=${document.getElementById('Team2Score').textContent.replace(/\D/g,'')}`), "_self")
     }
     else {
-        currentURL += `&score2=${document.getElementById('Team2Score').textContent}`
+        currentURL += `&score2=${document.getElementById('Team2Score').textContent.replace(/\D/g,'')}`
         open(currentURL, "_self")
     }
 })
